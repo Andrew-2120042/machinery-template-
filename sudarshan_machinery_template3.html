@@ -208,6 +208,52 @@ footer{background:#04080F;color:rgba(255,255,255,0.35);padding:48px 5% 24px;bord
 .lightbox-close{position:absolute;top:20px;right:28px;font-size:36px;color:white;cursor:pointer;font-family:'Inter',sans-serif;font-weight:300;line-height:1;background:none;border:none}
 .lightbox-img{width:600px;height:400px;display:flex;align-items:center;justify-content:center}
 .lightbox-caption{font-size:14px;font-family:'Inter',sans-serif;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:0.5px}
+
+@media(max-width:768px){
+  /* Nav */
+  .nav-links{display:none}
+  .nav-cta{padding:8px 14px;font-size:12px}
+
+  /* Hero — stack vertically, photo becomes bg */
+  .hero{grid-template-columns:1fr;min-height:100svh}
+  .hero-content{padding:100px 28px 48px;order:1}
+  .hero-photo{min-height:240px;order:2}
+  .hero-photo-overlay{background:linear-gradient(to bottom,var(--dark) 0%,transparent 40%)}
+  h1{font-size:36px !important;color:#F1F5F9}
+  .hero-sub{max-width:100%}
+  .hero-actions{flex-wrap:wrap;gap:12px}
+  .hero-stats{flex-wrap:wrap;gap:24px}
+
+  /* Supply items */
+  .supply-item{height:auto;min-height:120px}
+  .supply-item-inner{grid-template-columns:56px 1fr;gap:16px;padding:20px 24px}
+  .supply-item-tag,.supply-arrow{display:none}
+  .supply-item-num{font-size:36px}
+  .supply-item-main h3{font-size:18px}
+
+  /* Sections */
+  section{padding:48px 5%}
+  .section-title{font-size:28px}
+  .products-header{flex-direction:column;align-items:flex-start;gap:16px}
+
+  /* Grids */
+  .why-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+  .gallery-item{height:200px}
+  .gallery-item:first-child{grid-row:auto}
+  .testi-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .form-row{grid-template-columns:1fr}
+
+  /* Footer */
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+@media(max-width:480px){
+  h1{font-size:28px !important}
+  .why-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
