@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sudarshan Machinery — Templates</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#111}
+
+#frame{
+  width:100%;
+  height:100vh;
+  border:none;
+  display:block;
+  transition:opacity 0.3s ease;
+}
+#frame.fading{opacity:0}
+
+.switcher{
+  position:fixed;
+  bottom:28px;
+  right:28px;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  background:rgba(10,10,10,0.75);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  padding:5px;
+}
+
+.sw-btn{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size:12px;
+  font-weight:400;
+  color:rgba(255,255,255,0.45);
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:7px 16px;
+  border-radius:999px;
+  letter-spacing:0.5px;
+  transition:color 0.2s, background 0.2s;
+  white-space:nowrap;
+}
+.sw-btn:hover{color:rgba(255,255,255,0.85)}
+.sw-btn.active{
+  background:white;
+  color:#0A0A0A;
+}
+
+.sw-label{
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size:10px;
+  font-weight:400;
+  color:rgba(255,255,255,0.2);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:0 12px 0 8px;
+  white-space:nowrap;
+}
+</style>
+</head>
+<body>
+
+<iframe id="frame" src="sudarshan_machinery_website.html"></iframe>
+
+<div class="switcher">
+  <span class="sw-label">Layout</span>
+  <button class="sw-btn active" onclick="switchTo(0, this)">01</button>
+  <button class="sw-btn" onclick="switchTo(1, this)">02</button>
+  <button class="sw-btn" onclick="switchTo(2, this)">03</button>
+</div>
+
+<script>
+var templates = [
+  'sudarshan_machinery_website.html',
+  'sudarshan_machinery_template2.html',
+  'sudarshan_machinery_template3.html'
+];
+
+var frame   = document.getElementById('frame');
+var current = 0;
+
+function switchTo(index, btn) {
+  if (index === current) return;
+  current = index;
+
+  // update active button
+  document.querySelectorAll('.sw-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+
+  // fade out → swap src → fade in
+  frame.classList.add('fading');
+  setTimeout(function(){
+    frame.src = templates[index];
+    frame.onload = function(){
+      frame.classList.remove('fading');
+      frame.onload = null;
+    };
+  }, 300);
+}
+</script>
+</body>
+</html>
