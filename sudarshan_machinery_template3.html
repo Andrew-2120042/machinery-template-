@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sudarshan Machinery Pvt. Ltd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --orange:#FF6427;
+  --orange-dim:rgba(255,100,39,0.1);
+  --dark:#080D1A;
+  --surface:#111827;
+  --mid:#555;
+  --muted:#888;
+  --border:#E5E5E5;
+  --bg:#F8F7F5;
+  --white:#FFFFFF;
+  --text:#1A1A1A;
+}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:none;padding:0 5%;transition:background 0.35s,box-shadow 0.35s,border-color 0.35s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-mark{width:38px;height:38px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Barlow',sans-serif;font-weight:800;font-size:18px;color:white}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-text span:first-child{font-family:'Barlow',sans-serif;font-weight:800;font-size:16px;letter-spacing:0.3px;color:white;transition:color 0.3s}
+.logo-text span:last-child{font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:1px;text-transform:uppercase;transition:color 0.3s}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,0.75);letter-spacing:0.3px;transition:color 0.3s;cursor:pointer}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:white;padding:9px 20px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;border:none;cursor:pointer;transition:background 0.2s}
+.nav-cta:hover{background:#e05520}
+
+/* HERO — SPLIT SCREEN */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.hero-content{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--dark)}
+.hero-photo{background:url('pexels-alex-197677521-11951233.jpg') center/cover no-repeat;position:relative}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--dark) 0%,transparent 30%)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-dim);border:1px solid rgba(255,100,39,0.28);color:var(--orange);font-size:11px;font-family:'Inter',sans-serif;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;margin-bottom:32px;width:fit-content}
+.hero-badge span{width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0}
+h1{font-family:'Barlow',sans-serif;font-size:68px;font-weight:800;line-height:0.95;letter-spacing:-2px;margin-bottom:24px;color:#F1F5F9}
+h1 em{font-style:normal;color:var(--orange)}
+.hero-sub{font-size:16px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:40px;max-width:440px}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-bottom:48px}
+.btn-primary{background:var(--orange);color:white;padding:14px 28px;font-size:14px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.5px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s}
+.btn-primary:hover{background:#e05520}
+.btn-secondary{border:1.5px solid var(--border);color:var(--mid);padding:13px 24px;font-size:14px;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.3px;cursor:pointer;background:transparent;transition:all 0.2s;white-space:nowrap}
+.btn-secondary:hover{border-color:var(--text);color:var(--text)}
+.hero-content .btn-secondary{border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.6)}
+.hero-content .btn-secondary:hover{border-color:rgba(255,255,255,0.5);color:white}
+.hero-divider{width:40px;height:1px;background:rgba(255,255,255,0.15);margin-bottom:32px}
+.hero-stats{display:flex;gap:40px}
+.stat strong{display:block;font-family:'Barlow',sans-serif;font-size:38px;font-weight:800;color:#F1F5F9;line-height:1}
+.stat span{font-size:11px;font-family:'Inter',sans-serif;font-weight:500;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-top:4px;display:block}
+
+/* SECTION COMMON */
+section{padding:80px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.section-title{font-family:'Barlow',sans-serif;font-size:42px;font-weight:800;line-height:1.0;letter-spacing:-0.5px;margin-bottom:16px;color:var(--text)}
+.section-sub{color:var(--mid);font-size:16px;font-family:'Inter',sans-serif;font-weight:400;line-height:1.7;max-width:520px}
+
+/* PRODUCTS — PHOTO CARDS */
+.products-section{background:var(--white);border-top:1px solid var(--border)}
+.products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.supply-list{display:flex;flex-direction:column;gap:4px}
+.supply-item{position:relative;height:200px;background-size:cover;background-position:center;cursor:pointer;overflow:hidden;display:flex;align-items:center}
+.supply-item-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.55) 55%,rgba(0,0,0,0.25) 100%);transition:background 0.35s}
+.supply-item:hover .supply-item-overlay{background:linear-gradient(to right,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.7) 55%,rgba(0,0,0,0.45) 100%)}
+.supply-item-inner{position:relative;z-index:1;display:grid;grid-template-columns:80px 1fr 200px 40px;align-items:center;gap:32px;padding:0 48px;width:100%;transition:padding-left 0.3s}
+.supply-item:hover .supply-item-inner{padding-left:64px}
+.supply-item-num{font-family:'Barlow',sans-serif;font-size:52px;font-weight:800;color:rgba(255,255,255,0.12);line-height:1;transition:color 0.3s}
+.supply-item:hover .supply-item-num{color:var(--orange);opacity:0.8}
+.supply-item-main h3{font-family:'Barlow',sans-serif;font-size:24px;font-weight:800;color:white;margin-bottom:5px}
+.supply-item-main p{font-size:13px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.65);line-height:1.5}
+.supply-item-tag{font-size:11px;font-family:'Inter',sans-serif;font-weight:600;color:rgba(255,255,255,0.45);letter-spacing:1.5px;text-transform:uppercase;text-align:right}
+.supply-arrow{color:var(--orange);opacity:0;transform:translateX(-10px);transition:opacity 0.25s,transform 0.3s;flex-shrink:0}
+.supply-item:hover .supply-arrow{opacity:1;transform:translateX(0)}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(32px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* WHY US — LIGHT (contrast against dark body) */
+.why-section{background:#F5F4F2;color:#0C1022}
+.why-section .section-label{color:var(--orange)}
+.why-section .section-title{color:#0C1022}
+.why-section .section-sub{color:#555}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #E0DED9;margin-top:48px}
+.why-card{padding:36px 28px;background:#F5F4F2;border-right:1px solid #E0DED9}
+.why-card:last-child{border-right:none}
+.why-num{font-family:'Barlow',sans-serif;font-size:52px;font-weight:800;color:rgba(0,0,0,0.05);line-height:1;margin-bottom:20px}
+.why-card h3{font-size:16px;font-family:'Barlow',sans-serif;font-weight:800;margin-bottom:10px;color:#1A1A1A}
+.why-card p{font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:#666;line-height:1.65}
+
+/* GALLERY PREVIEW */
+.gallery-section{background:var(--bg)}
+.gallery-section .section-title{color:var(--text)}
+.gallery-section .section-sub{color:var(--mid)}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:3px;margin-top:40px}
+.gallery-item{overflow:hidden;position:relative;cursor:pointer}
+.gallery-item:first-child{grid-row:1/3}
+.gallery-placeholder{width:100%;height:100%;transition:filter 0.3s,transform 0.45s}
+.gallery-item:hover .gallery-placeholder{filter:brightness(0.7);transform:scale(1.05)}
+
+/* TESTIMONIALS — DARK */
+.testi-section{background:#0C1022}
+.testi-section .section-title{color:#F1F5F9}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);margin-top:48px}
+.testi-card{background:#0C1022;padding:32px}
+.testi-card::before{content:'\201C';font-family:'Inter',sans-serif;font-size:64px;font-weight:400;color:var(--orange);line-height:0.8;display:block;margin-bottom:20px}
+.testi-card p{font-size:15px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,0.07);padding-top:16px}
+.testi-avatar{width:36px;height:36px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Barlow',sans-serif;font-weight:800;color:white;flex-shrink:0}
+.testi-name{font-size:13px;font-family:'Barlow',sans-serif;font-weight:800;color:#F1F5F9}
+.testi-role{font-size:12px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.35)}
+
+/* CONTACT — DARK */
+.contact-section{background:#080D1A;border-top:1px solid rgba(255,255,255,0.07)}
+.contact-section .section-title{color:#F1F5F9}
+.contact-section .section-sub{color:rgba(255,255,255,0.52)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:48px}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-item{display:flex;gap:16px;align-items:flex-start}
+.contact-item-icon{width:40px;height:40px;background:rgba(255,100,39,0.12);border:1px solid rgba(255,100,39,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item-icon svg{width:18px;height:18px;stroke:var(--orange);fill:none;stroke-width:2}
+.contact-item-text strong{display:block;font-size:13px;font-family:'Barlow',sans-serif;font-weight:800;margin-bottom:2px;color:#F1F5F9}
+.contact-item-text span{font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.52)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:12px;font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.form-group input,.form-group textarea,.form-group select{border:1px solid rgba(255,255,255,0.08);padding:12px 14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:#F1F5F9;background:#111827;outline:none;transition:border 0.2s;width:100%}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--orange)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group select option{background:#111827}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:14px 24px;font-size:14px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;border:none;margin-top:32px;width:100%;justify-content:center}
+.whatsapp-btn svg{width:20px;height:20px;fill:white}
+
+/* FOOTER */
+footer{background:#04080F;color:rgba(255,255,255,0.35);padding:48px 5% 24px;border-top:1px solid var(--border)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.footer-brand p{font-size:14px;font-family:'Inter',sans-serif;font-weight:400;line-height:1.7;color:var(--muted);margin-top:12px;max-width:280px}
+.footer-col h4{font-size:12px;font-family:'Barlow',sans-serif;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);margin-bottom:8px;transition:color 0.2s;cursor:pointer}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:13px}
+.iso-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:4px 10px;font-size:11px;font-family:'Inter',sans-serif;font-weight:500;color:var(--muted);letter-spacing:0.5px;margin-top:16px}
+
+/* PAGE HEADER */
+.page-header{padding:48px 5% 40px;border-bottom:1px solid var(--border);background:var(--white)}
+.page-header-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;color:var(--mid);cursor:pointer;margin-bottom:24px;transition:color 0.2s;background:none;border:none;padding:0}
+.back-btn:hover{color:var(--orange)}
+.back-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5}
+.page-header h2{font-family:'Barlow',sans-serif;font-size:36px;font-weight:800;color:var(--text)}
+.page-header p{font-size:15px;font-family:'Inter',sans-serif;font-weight:400;color:var(--mid);margin-top:8px}
+
+/* CATALOGUE PAGE */
+.catalogue-body{padding:48px 5% 80px;background:var(--bg)}
+.catalogue-inner{max-width:1200px;margin:0 auto}
+.catalogue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-card{background:var(--white);border:1px solid var(--border);overflow:hidden;transition:box-shadow 0.25s,transform 0.25s}
+.cat-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.1);transform:translateY(-3px)}
+.cat-card-img{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.cat-card-brand{position:absolute;top:12px;left:12px;background:var(--orange);padding:3px 10px;z-index:2}
+.cat-card-brand span{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;color:white;letter-spacing:1px;text-transform:uppercase}
+.cat-img-icon svg{width:56px;height:56px;stroke:rgba(255,255,255,0.2);fill:none;stroke-width:1}
+.cat-img-label{font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.55);letter-spacing:2px;text-transform:uppercase;text-align:center;padding:0 16px}
+.cat-card-body{padding:24px}
+.cat-card-sub{font-size:11px;font-family:'Barlow',sans-serif;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.cat-card-body h3{font-family:'Barlow',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:16px;letter-spacing:0}
+.cat-product-list{list-style:none;margin-bottom:20px;border-top:1px solid var(--border)}
+.cat-product-list li{font-size:13px;font-family:'Inter',sans-serif;font-weight:400;color:var(--mid);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.cat-product-list li::before{content:'';width:5px;height:5px;background:var(--orange);border-radius:50%;flex-shrink:0}
+.cat-enquire-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px 16px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;color:var(--orange);border:1.5px solid var(--orange);background:none;cursor:pointer;transition:all 0.2s}
+.cat-enquire-btn:hover{background:var(--orange);color:white}
+.cat-cta-banner{margin-top:48px;background:var(--text);padding:48px;display:flex;justify-content:space-between;align-items:center;gap:32px}
+.cat-cta-banner h3{font-family:'Barlow',sans-serif;font-size:30px;font-weight:800;color:white;margin-bottom:8px}
+.cat-cta-banner p{font-size:15px;font-family:'Inter',sans-serif;font-weight:400;color:rgba(255,255,255,0.65);max-width:480px}
+
+/* GALLERY PAGE */
+.gallery-page-body{padding:48px 5% 80px;background:var(--bg)}
+.gallery-page-inner{max-width:1200px;margin:0 auto}
+.filter-bar{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap}
+.filter-btn{padding:8px 18px;font-size:13px;font-family:'Inter',sans-serif;font-weight:600;border:1.5px solid var(--border);background:white;cursor:pointer;color:var(--mid);transition:all 0.2s}
+.filter-btn.active,.filter-btn:hover{background:var(--orange);border-color:var(--orange);color:white}
+.gallery-full-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.g-item{aspect-ratio:1;overflow:hidden;cursor:pointer;position:relative}
+.g-item-inner{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform 0.3s,filter 0.3s}
+.g-item:hover .g-item-inner{transform:scale(1.05);filter:brightness(0.75)}
+.g-item-label{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));opacity:0;transition:opacity 0.25s}
+.g-item:hover .g-item-label{opacity:1}
+.g-item-label span{font-size:11px;font-family:'Inter',sans-serif;font-weight:600;color:white;letter-spacing:1px;text-transform:uppercase}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.lightbox.open{display:flex}
+.lightbox-close{position:absolute;top:20px;right:28px;font-size:36px;color:white;cursor:pointer;font-family:'Inter',sans-serif;font-weight:300;line-height:1;background:none;border:none}
+.lightbox-img{width:600px;height:400px;display:flex;align-items:center;justify-content:center}
+.lightbox-caption{font-size:14px;font-family:'Inter',sans-serif;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:0.5px}
+</style>
+</head>
+<body>
+
+<!-- ── STICKY NAV (always visible) ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <div class="logo-mark">SM</div>
+      <div class="logo-text">
+        <span>Sudarshan Machinery</span>
+        <span>Pvt. Ltd. — Est. 1994</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a onclick="showPage('catalogue')">Products</a>
+      <a onclick="showPage('about')">About Us</a>
+      <a onclick="showPage('gallery')">Gallery</a>
+      <a onclick="goToSection('contact')">Contact</a>
+    </div>
+    <button class="nav-cta" onclick="goToSection('contact')">Get a Quote</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span>Trusted Since 1994</div>
+    <h1>Industrial<br/>Machinery<br/><em>You Can Count On.</em></h1>
+    <p class="hero-sub">Authorized dealers of CNC machines, hydraulic press systems, and industrial automation equipment across Maharashtra and South India.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="goToSection('contact')">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Request Quote
+      </button>
+      <button class="btn-secondary" onclick="showPage('catalogue')">View Catalogue</button>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div class="stat"><strong>28+</strong><span>Years Experience</span></div>
+      <div class="stat"><strong>500+</strong><span>Clients Served</span></div>
+      <div class="stat"><strong>40+</strong><span>Brands Stocked</span></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-photo-overlay"></div>
+  </div>
+</div>
+
+
+<section class="products-section" id="products">
+  <div class="section-inner">
+    <div class="products-header fade-up">
+      <div>
+        <div class="section-label">Our Products</div>
+        <div class="section-title">What We Supply</div>
+        <p class="section-sub">Comprehensive range of industrial machinery for manufacturing, fabrication, and process industries.</p>
+      </div>
+      <button class="btn-secondary" onclick="showPage('catalogue')">Full Catalogue →</button>
+    </div>
+    <div class="supply-list">
+      <div class="supply-item fade-up" style="background-image:url('pexels-tkirkgoz-11765538.jpg')" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">01</div>
+          <div class="supply-item-main"><h3>CNC Machining Centers</h3><p>Vertical and horizontal centers, 3-axis to 5-axis. Fanuc, Siemens &amp; Mitsubishi controls.</p></div>
+          <div class="supply-item-tag">CNC / Machining</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="supply-item fade-up" style="background-image:url('pexels-mandiri-abadi-396768996-14804699.jpg');transition-delay:0.06s" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">02</div>
+          <div class="supply-item-main"><h3>Hydraulic Press Systems</h3><p>H-frame and C-frame presses from 10T to 500T for forging, stamping and forming.</p></div>
+          <div class="supply-item-tag">Press / Forming</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="supply-item fade-up" style="background-image:url('pexels-alex-197677521-11951233.jpg');transition-delay:0.12s" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">03</div>
+          <div class="supply-item-main"><h3>Lathe &amp; Turning Machines</h3><p>All-gear lathes and CNC turning centers. Swing up to 2000mm, length up to 6 metres.</p></div>
+          <div class="supply-item-tag">Lathe / Turning</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="supply-item fade-up" style="background-image:url('pexels-mandiri-abadi-396768996-14805033.jpg');transition-delay:0.18s" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">04</div>
+          <div class="supply-item-main"><h3>Welding Equipment</h3><p>MIG, TIG and plasma welding machines. Inverter sets, positioners and automated fixtures.</p></div>
+          <div class="supply-item-tag">Welding / Joining</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="supply-item fade-up" style="background-image:url('pexels-delot-18471453.jpg');transition-delay:0.24s" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">05</div>
+          <div class="supply-item-main"><h3>Industrial Compressors</h3><p>Screw and reciprocating compressors from 5HP to 500HP. Oil-free models available.</p></div>
+          <div class="supply-item-tag">Compressed Air</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="supply-item fade-up" style="background-image:url('pexels-j-e-22471780-18569750.jpg');transition-delay:0.30s" onclick="showPage('catalogue')">
+        <div class="supply-item-overlay"></div>
+        <div class="supply-item-inner">
+          <div class="supply-item-num">06</div>
+          <div class="supply-item-main"><h3>Material Handling Systems</h3><p>EOT cranes, jib cranes, chain pulley blocks and conveyors. Custom design &amp; install.</p></div>
+          <div class="supply-item-tag">Handling / Lifting</div>
+          <svg class="supply-arrow" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section" id="about">
+  <div class="section-inner">
+    <div class="section-label fade-up">Why Choose Us</div>
+    <div class="section-title fade-up" style="transition-delay:0.08s">Three Decades of Industrial Excellence.</div>
+    <p class="section-sub fade-up" style="transition-delay:0.16s">We don't just sell machines — we help manufacturers find the right equipment for their process, budget, and scale.</p>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-num">01</div>
+        <h3>Authorized Dealers</h3>
+        <p>Official dealership with 40+ domestic and international brands. Original equipment, full warranty, genuine spare parts.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.1s">
+        <div class="why-num">02</div>
+        <h3>Expert Technical Team</h3>
+        <p>12 in-house engineers for on-site installation, commissioning, and AMC support across India.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.2s">
+        <div class="why-num">03</div>
+        <h3>Finance Assistance</h3>
+        <p>Tie-ups with leading NBFCs. Term loans, lease options, and loan-against-machinery available.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.3s">
+        <div class="why-num">04</div>
+        <h3>After-Sales Support</h3>
+        <p>48-hour response on all service calls. Preventive maintenance contracts with quarterly visits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="fade-up" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px">
+      <div>
+        <div class="section-label">Gallery</div>
+        <div class="section-title">From Our Facility</div>
+      </div>
+      <button class="btn-secondary" onclick="showPage('gallery')">View All Photos →</button>
+    </div>
+    <div class="gallery-grid fade-up" style="transition-delay:0.1s">
+      <div class="gallery-item" style="grid-row:1/3" onclick="showPage('gallery')">
+        <div class="gallery-placeholder" style="height:100%;background:url('pexels-mandiri-abadi-396768996-14804699.jpg') center/cover no-repeat"></div>
+      </div>
+      <div class="gallery-item" onclick="showPage('gallery')">
+        <div class="gallery-placeholder" style="height:220px;background:url('pexels-tkirkgoz-11765538.jpg') center/cover no-repeat"></div>
+      </div>
+      <div class="gallery-item" onclick="showPage('gallery')">
+        <div class="gallery-placeholder" style="height:220px;background:url('pexels-mandiri-abadi-396768996-14805033.jpg') center/cover no-repeat"></div>
+      </div>
+      <div class="gallery-item" onclick="showPage('gallery')">
+        <div class="gallery-placeholder" style="height:220px;background:url('pexels-delot-18471453.jpg') center/cover no-repeat"></div>
+      </div>
+      <div class="gallery-item" onclick="showPage('gallery')">
+        <div class="gallery-placeholder" style="height:220px;background:url('pexels-j-e-22471780-18569750.jpg') center/cover no-repeat"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-section">
+  <div class="section-inner">
+    <div class="section-label">Client Testimonials</div>
+    <div class="section-title">What Our Clients Say</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p>Purchased two CNC machining centers two years ago. The after-sales support has been exceptional — zero unplanned downtime since installation.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RP</div>
+          <div><div class="testi-name">Ramesh Patil</div><div class="testi-role">Owner, Patil Precision Components, Pune</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p>We've been buying equipment from Sudarshan for over 12 years. Their honest advice helped us upgrade our press shop at exactly the right time.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SK</div>
+          <div><div class="testi-name">Suresh Krishnamurthy</div><div class="testi-role">MD, Krishna Auto Pressings, Chennai</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p>Very professional team. They arranged finance, handled installation, and trained our operators — all under one roof. Highly recommended.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AJ</div>
+          <div><div class="testi-name">Anand Joshi</div><div class="testi-role">Plant Head, Joshi Fabricators, Nashik</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact Us</div>
+    <div class="section-title">Get in Touch</div>
+    <div class="contact-grid">
+      <div>
+        <p style="color:var(--mid);font-size:16px;line-height:1.7;margin-bottom:36px">Interested in a machine or a service contract? Our team responds within 24 hours on all business days.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="contact-item-text"><strong>Visit Us</strong><span>Plot No. 14, MIDC Phase II, Satpur,<br/>Nashik — 422 007, Maharashtra</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div class="contact-item-text"><strong>Call Us</strong><span>+91 98234 56789<br/>0253-234 5678 (Office)</span></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="contact-item-text"><strong>Email Us</strong><span>sales@sudarshanmachinery.com<br/>service@sudarshanmachinery.com</span></div>
+          </div>
+        </div>
+        <button class="whatsapp-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </button>
+      </div>
+      <div>
+        <div style="border:1px solid var(--border);padding:36px">
+          <p style="font-family:'Inter',sans-serif;font-size:22px;font-weight:400;margin-bottom:24px;color:#F1F5F9">Send an Enquiry</p>
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"/></div>
+            <div class="form-group"><label>Company</label><input type="text" placeholder="Company name"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+            <div class="form-group"><label>City</label><input type="text" placeholder="Your city"/></div>
+          </div>
+          <div class="form-group">
+            <label>Product / Requirement</label>
+            <select><option>Select product category</option><option>CNC Machining Center</option><option>Hydraulic Press</option><option>Lathe Machine</option><option>Welding Equipment</option><option>Compressor</option><option>Material Handling</option><option>Other</option></select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Describe your requirement, capacity, budget range, etc."></textarea></div>
+          <button class="btn-primary" style="width:100%;justify-content:center;padding:15px">Submit Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:4px">
+          <div class="logo-mark">SM</div>
+          <div class="logo-text">
+            <span style="color:white">Sudarshan Machinery</span>
+            <span style="color:#555">Pvt. Ltd.</span>
+          </div>
+        </div>
+        <p>Authorized dealers of industrial machinery. Serving manufacturers across Maharashtra, Karnataka, Tamil Nadu, and Gujarat since 1994.</p>
+        <div class="iso-badge">ISO 9001:2015 Certified</div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a onclick="showPage('catalogue')">CNC Machines</a>
+        <a onclick="showPage('catalogue')">Hydraulic Presses</a>
+        <a onclick="showPage('catalogue')">Lathe Machines</a>
+        <a onclick="showPage('catalogue')">Welding Equipment</a>
+        <a onclick="showPage('catalogue')">Compressors</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a onclick="showPage('about')">About Us</a>
+        <a onclick="showPage('about')">Our Team</a>
+        <a onclick="goToSection('clients')">Clients</a>
+        <a onclick="showPage('gallery')">Gallery</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a onclick="goToSection('contact')">Get a Quote</a>
+        <a onclick="goToSection('contact')">Service Request</a>
+        <a onclick="goToSection('contact')">AMC Contracts</a>
+        <a onclick="goToSection('contact')">Spare Parts</a>
+        <a onclick="goToSection('contact')">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Sudarshan Machinery Pvt. Ltd. All rights reserved.</span>
+      <span>CIN: U29100MH1994PTC000123</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /page-home -->
+
+<!-- ══════════════════════════════════════
+     CATALOGUE PAGE
+══════════════════════════════════════ -->
+<div id="page-catalogue" class="page">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <button class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </button>
+      <div class="section-label">Product Catalogue</div>
+      <div class="section-title">Our Complete Range</div>
+      <p class="section-sub">Explore our full lineup — from precision CNC machining centers to heavy-duty material handling systems.</p>
+    </div>
+  </div>
+
+  <div class="catalogue-body">
+    <div class="catalogue-inner">
+      <div class="catalogue-grid">
+
+        <!-- CNC -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-tkirkgoz-11765538.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><rect x="8" y="8" width="48" height="48" rx="2" stroke-width="1.5"/><rect x="16" y="16" width="14" height="14" stroke-width="1.5"/><path d="M36 20h12M36 28h9M36 36h6M16 38h14v8H16z" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cat-img-label">CNC Machining Centers</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">CNC / Precision</div>
+            <h3>CNC Machining Centers</h3>
+            <ul class="cat-product-list">
+              <li>3-Axis Vertical Machining Center</li>
+              <li>4-Axis CNC Machining Center</li>
+              <li>5-Axis High-Speed Machining Center</li>
+              <li>Horizontal Machining Center</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+        <!-- Hydraulic Press -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-delot-18471453.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><rect x="22" y="4" width="20" height="56" rx="1" stroke-width="1.5"/><rect x="10" y="22" width="12" height="20" stroke-width="1.5"/><rect x="42" y="22" width="12" height="20" stroke-width="1.5"/><rect x="14" y="38" width="36" height="14" rx="1" stroke-width="1.5"/><circle cx="32" cy="16" r="7" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cat-img-label">Hydraulic Press Systems</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">Hydraulics / Forging</div>
+            <h3>Hydraulic Press Systems</h3>
+            <ul class="cat-product-list">
+              <li>H-Frame Hydraulic Press (10T–500T)</li>
+              <li>C-Frame Hydraulic Press</li>
+              <li>Four-Column Hydraulic Press</li>
+              <li>Deep Draw Hydraulic Press</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+        <!-- Lathe -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-alex-197677521-11951233.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><rect x="4" y="26" width="56" height="12" rx="1" stroke-width="1.5"/><circle cx="14" cy="32" r="9" stroke-width="1.5"/><circle cx="50" cy="32" r="7" stroke-width="1.5"/><rect x="10" y="14" width="10" height="12" stroke-width="1.5"/><path d="M24 28h16M36 24v8" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cat-img-label">Lathe &amp; Turning Machines</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">Turning / Machining</div>
+            <h3>Lathe &amp; Turning Machines</h3>
+            <ul class="cat-product-list">
+              <li>Heavy Duty All-Gear Lathe</li>
+              <li>CNC Turning Center</li>
+              <li>Capstan &amp; Turret Lathe</li>
+              <li>Pipe &amp; Profile Lathe</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+        <!-- Welding -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-mandiri-abadi-396768996-14805033.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><path d="M10 54 L32 12 L54 54" stroke-width="1.5"/><path d="M20 42 L32 18 L44 42" stroke-width="1.5"/><circle cx="32" cy="54" r="4" stroke-width="1.5"/><path d="M28 12 L28 4 M32 12 L32 3 M36 12 L36 4" stroke-width="2"/></svg>
+            </div>
+            <div class="cat-img-label">Welding Equipment</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">Welding / Cutting</div>
+            <h3>Welding Equipment</h3>
+            <ul class="cat-product-list">
+              <li>MIG / MAG Welding Machine</li>
+              <li>TIG Welding Machine</li>
+              <li>Plasma Cutting Machine</li>
+              <li>Spot &amp; Projection Welding</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+        <!-- Compressors -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-mandiri-abadi-396768996-14804699.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" stroke-width="1.5"/><circle cx="32" cy="32" r="11" stroke-width="1.5"/><path d="M32 12 L32 4 M32 52 L32 60 M12 32 L4 32 M52 32 L60 32" stroke-width="2"/><path d="M27 32 L32 22 L37 32 L32 37Z" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cat-img-label">Industrial Compressors</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">Pneumatics / Air Systems</div>
+            <h3>Industrial Compressors</h3>
+            <ul class="cat-product-list">
+              <li>Screw Air Compressor (5–500HP)</li>
+              <li>Reciprocating Air Compressor</li>
+              <li>Oil-Free Compressor</li>
+              <li>Portable Compressor Units</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+        <!-- Material Handling -->
+        <div class="cat-card">
+          <div class="cat-card-img" style="background:linear-gradient(rgba(0,0,0,0.48),rgba(0,0,0,0.48)),url('pexels-j-e-22471780-18569750.jpg') center/cover no-repeat">
+            <div class="cat-card-brand"><span>Sudarshan</span></div>
+            <div class="cat-img-icon">
+              <svg viewBox="0 0 64 64"><path d="M4 18 L60 18" stroke-width="1.5"/><path d="M14 18 L14 50" stroke-width="1.5"/><path d="M50 18 L50 50" stroke-width="1.5"/><path d="M14 34 L50 34" stroke-width="1.5"/><rect x="22" y="40" width="20" height="10" stroke-width="1.5"/><path d="M8 18 L14 10 M56 18 L50 10" stroke-width="1.5"/></svg>
+            </div>
+            <div class="cat-img-label">Material Handling Systems</div>
+          </div>
+          <div class="cat-card-body">
+            <div class="cat-card-sub">Cranes / Conveyors</div>
+            <h3>Material Handling Systems</h3>
+            <ul class="cat-product-list">
+              <li>EOT Crane (5T–200T)</li>
+              <li>Jib &amp; Gantry Crane</li>
+              <li>Chain Pulley Block</li>
+              <li>Industrial Belt Conveyor</li>
+            </ul>
+            <button class="cat-enquire-btn" onclick="goToSection('contact')">Enquire Now →</button>
+          </div>
+        </div>
+
+      </div><!-- /catalogue-grid -->
+
+      <div class="cat-cta-banner">
+        <div>
+          <h3>Need a Custom Solution?</h3>
+          <p>Our engineering team can source or configure machinery to your exact process requirements and budget.</p>
+        </div>
+        <button class="btn-primary" style="white-space:nowrap;flex-shrink:0" onclick="goToSection('contact')">Talk to Our Engineers →</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-catalogue -->
+
+<!-- ══════════════════════════════════════
+     GALLERY PAGE
+══════════════════════════════════════ -->
+<div id="page-gallery" class="page">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <button class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </button>
+      <div class="section-label">Photo Gallery</div>
+      <div class="section-title">From Our Facility</div>
+      <p class="section-sub">A look inside our showroom, workshop, and client installations across India.</p>
+    </div>
+  </div>
+
+  <div class="gallery-page-body">
+    <div class="gallery-page-inner">
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterGallery(this,'all')">All Photos</button>
+        <button class="filter-btn" onclick="filterGallery(this,'showroom')">Showroom</button>
+        <button class="filter-btn" onclick="filterGallery(this,'machines')">Machines</button>
+        <button class="filter-btn" onclick="filterGallery(this,'installation')">Installation</button>
+        <button class="filter-btn" onclick="filterGallery(this,'team')">Our Team</button>
+      </div>
+
+      <div class="gallery-full-grid">
+        <div class="g-item" data-cat="showroom" onclick="openLightbox('Machine Hall — Main Facility')">
+          <div class="g-item-inner" style="background-image:url('pexels-mandiri-abadi-396768996-14804699.jpg')"></div>
+          <div class="g-item-label"><span>Machine Hall</span></div>
+        </div>
+        <div class="g-item" data-cat="machines" onclick="openLightbox('CNC Machining Center — VMC 850')">
+          <div class="g-item-inner" style="background-image:url('pexels-tkirkgoz-11765538.jpg')"></div>
+          <div class="g-item-label"><span>CNC Setup</span></div>
+        </div>
+        <div class="g-item" data-cat="machines" onclick="openLightbox('Milling Center — In Operation')">
+          <div class="g-item-inner" style="background-image:url('pexels-mandiri-abadi-396768996-14805033.jpg')"></div>
+          <div class="g-item-label"><span>Milling Centre</span></div>
+        </div>
+        <div class="g-item" data-cat="machines" onclick="openLightbox('Lathe Machine — Close-Up')">
+          <div class="g-item-inner" style="background-image:url('pexels-alex-197677521-11951233.jpg')"></div>
+          <div class="g-item-label"><span>Lathe Machines</span></div>
+        </div>
+        <div class="g-item" data-cat="installation" onclick="openLightbox('Robotics & Automation Setup')">
+          <div class="g-item-inner" style="background-image:url('pexels-delot-18471453.jpg')"></div>
+          <div class="g-item-label"><span>Automation</span></div>
+        </div>
+        <div class="g-item" data-cat="showroom" onclick="openLightbox('Workshop Floor — Nashik')">
+          <div class="g-item-inner" style="background-image:url('pexels-j-e-22471780-18569750.jpg')"></div>
+          <div class="g-item-label"><span>Workshop Floor</span></div>
+        </div>
+        <div class="g-item" data-cat="installation" onclick="openLightbox('CNC Installation — Pune Client')">
+          <div class="g-item-inner" style="background-image:url('pexels-tkirkgoz-11765538.jpg')"></div>
+          <div class="g-item-label"><span>CNC Installation</span></div>
+        </div>
+        <div class="g-item" data-cat="team" onclick="openLightbox('Technical Team — On-Site Commissioning')">
+          <div class="g-item-inner" style="background-image:url('pexels-mandiri-abadi-396768996-14805033.jpg')"></div>
+          <div class="g-item-label"><span>Team at Work</span></div>
+        </div>
+        <div class="g-item" data-cat="showroom" onclick="openLightbox('Production Floor — Full View')">
+          <div class="g-item-inner" style="background-image:url('pexels-mandiri-abadi-396768996-14804699.jpg')"></div>
+          <div class="g-item-label"><span>Production Floor</span></div>
+        </div>
+        <div class="g-item" data-cat="machines" onclick="openLightbox('Precision Turning — In Progress')">
+          <div class="g-item-inner" style="background-image:url('pexels-alex-197677521-11951233.jpg')"></div>
+          <div class="g-item-label"><span>Precision Turning</span></div>
+        </div>
+        <div class="g-item" data-cat="installation" onclick="openLightbox('Automation Line — Client Site')">
+          <div class="g-item-inner" style="background-image:url('pexels-delot-18471453.jpg')"></div>
+          <div class="g-item-label"><span>Automation Line</span></div>
+        </div>
+        <div class="g-item" data-cat="team" onclick="openLightbox('Service Visit — Annual Maintenance')">
+          <div class="g-item-inner" style="background-image:url('pexels-j-e-22471780-18569750.jpg')"></div>
+          <div class="g-item-label"><span>Service Visit</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /page-gallery -->
+
+<!-- ══════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════ -->
+<div id="page-about" class="page">
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <button class="back-btn" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="background:var(--dark);padding:80px 5%">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+      <div>
+        <div class="section-label" style="color:var(--orange)">About Us</div>
+        <h1 style="color:white;font-size:56px;margin-bottom:24px">Industrial Machinery<br/><em>You Can Count On.</em></h1>
+        <p style="color:#888;font-size:16px;font-family:'Inter',sans-serif;font-weight:400;line-height:1.8;max-width:460px">Founded in 1994 in Nashik, Maharashtra, Sudarshan Machinery Pvt. Ltd. has grown into one of the most trusted names in industrial equipment dealership across Maharashtra and South India. We don't just sell machines — we help manufacturers make the right investment.</p>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.08)">
+        <div style="padding:28px 32px;border-bottom:1px solid rgba(255,255,255,0.08)">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:42px;color:white;line-height:1">28+</div>
+          <div style="font-size:12px;font-family:'Inter',sans-serif;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Years in Business</div>
+        </div>
+        <div style="padding:28px 32px;border-bottom:1px solid rgba(255,255,255,0.08)">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:42px;color:white;line-height:1">500+</div>
+          <div style="font-size:12px;font-family:'Inter',sans-serif;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Satisfied Clients</div>
+        </div>
+        <div style="padding:28px 32px">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:42px;color:white;line-height:1">40+</div>
+          <div style="font-size:12px;font-family:'Inter',sans-serif;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px">Brands &amp; Principals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE DO -->
+  <div style="padding:80px 5%;background:var(--white)">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+      <div>
+        <div class="section-label">What We Do</div>
+        <div class="section-title">Authorized Dealers of Industrial Machinery</div>
+        <p style="font-size:16px;font-family:'Inter',sans-serif;font-weight:400;color:var(--mid);line-height:1.8;margin-bottom:20px;margin-top:16px">We are authorized dealers for 40+ leading domestic and international machinery brands, covering CNC machining centers, hydraulic presses, lathes, welding equipment, compressors, and material handling systems.</p>
+        <p style="font-size:16px;font-family:'Inter',sans-serif;font-weight:400;color:var(--mid);line-height:1.8">Based in Nashik with reach across Maharashtra, Karnataka, Tamil Nadu, and Gujarat — we deliver end-to-end support from selection and finance through to installation and annual maintenance.</p>
+      </div>
+      <div style="border:1px solid var(--border)">
+        <div style="padding:24px 28px;border-bottom:1px solid var(--border)">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:16px;color:var(--dark);margin-bottom:6px">Authorized Dealerships</div>
+          <div style="font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);line-height:1.65">Official agreements with 40+ brands. Original equipment, full OEM warranty, genuine spare parts.</div>
+        </div>
+        <div style="padding:24px 28px;border-bottom:1px solid var(--border)">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:16px;color:var(--dark);margin-bottom:6px">Expert Technical Team</div>
+          <div style="font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);line-height:1.65">12 qualified engineers for on-site installation, commissioning, and AMC support across India.</div>
+        </div>
+        <div style="padding:24px 28px;border-bottom:1px solid var(--border)">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:16px;color:var(--dark);margin-bottom:6px">Finance Assistance</div>
+          <div style="font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);line-height:1.65">Tie-ups with leading NBFCs for term loans, lease options, and loan-against-machinery.</div>
+        </div>
+        <div style="padding:24px 28px">
+          <div style="font-family:'Barlow',sans-serif;font-weight:800;font-size:16px;color:var(--dark);margin-bottom:6px">After-Sales Support</div>
+          <div style="font-size:14px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted);line-height:1.65">48-hour response on all service calls. Preventive maintenance contracts with quarterly visits.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div style="background:var(--bg);padding:32px 5%;border-top:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px">
+      <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+        <span style="font-size:12px;font-family:'Inter',sans-serif;font-weight:600;color:var(--mid);border:1px solid var(--border);padding:5px 12px;letter-spacing:0.5px">ISO 9001:2015 Certified</span>
+        <span style="font-size:13px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted)">CIN: U29100MH1994PTC000123</span>
+        <span style="font-size:13px;font-family:'Inter',sans-serif;font-weight:400;color:var(--muted)">Est. 1994 · Nashik, Maharashtra</span>
+      </div>
+      <button class="btn-primary" onclick="goToSection('contact')">Get in Touch →</button>
+    </div>
+  </div>
+
+</div><!-- /page-about -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+  <div class="lightbox-img" onclick="event.stopPropagation()" style="background:#1a1a1a;border:1px solid #333"></div>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+function showPage(name, fromPop) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  if (!fromPop) history.pushState({page: name}, '', '');
+}
+window.addEventListener('popstate', function(e){
+  showPage(e.state && e.state.page ? e.state.page : 'home', true);
+});
+
+function goToSection(id) {
+  var home = document.getElementById('page-home');
+  if (!home.classList.contains('active')) {
+    showPage('home');
+    setTimeout(function(){
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({behavior:'smooth'});
+    }, 120);
+  } else {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }
+}
+
+function filterGallery(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.g-item').forEach(function(item){
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+function openLightbox(caption) {
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Scroll animations
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(function(el){ observer.observe(el); });
+
+// Nav turns white after scrolling past hero
+var nav = document.querySelector('nav');
+function updateNav(){
+  if(window.scrollY > window.innerHeight * 0.6){
+    nav.style.background = '#ffffff';
+    nav.style.borderBottom = '1px solid #E5E5E5';
+    nav.style.boxShadow = '0 1px 12px rgba(0,0,0,0.06)';
+    document.querySelectorAll('.nav-links a').forEach(function(a){ a.style.color = '#444'; });
+    document.querySelectorAll('.logo-text span:first-child').forEach(function(s){ s.style.color = '#1A1A1A'; });
+    document.querySelectorAll('.logo-text span:last-child').forEach(function(s){ s.style.color = '#888'; });
+  } else {
+    nav.style.background = 'transparent';
+    nav.style.borderBottom = 'none';
+    nav.style.boxShadow = 'none';
+    document.querySelectorAll('.nav-links a').forEach(function(a){ a.style.color = 'rgba(255,255,255,0.75)'; });
+    document.querySelectorAll('.logo-text span:first-child').forEach(function(s){ s.style.color = 'white'; });
+    document.querySelectorAll('.logo-text span:last-child').forEach(function(s){ s.style.color = 'rgba(255,255,255,0.45)'; });
+  }
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+</script>
+</body>
+</html>

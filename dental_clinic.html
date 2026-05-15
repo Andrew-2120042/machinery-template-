@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pearl Dental Studio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-padding-top:90px}
+:root{
+  --primary:#111111;
+  --primary-dark:#000000;
+  --primary-light:#F4F4F4;
+  --dark:#0F0F0F;
+  --text:#1A1A1A;
+  --mid:#555555;
+  --muted:#999999;
+  --border:#E5E5E5;
+  --bg:#F8F8F8;
+  --white:#FFFFFF;
+}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--text);background:var(--white);font-size:16px;line-height:1.6;font-weight:300}
+a{text-decoration:none;color:inherit;cursor:pointer}
+button{cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;transition:all 0.4s ease}
+.nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:70px;max-width:1200px;margin:0 auto}
+.nav-links{justify-self:center}
+.nav-actions{justify-self:end}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:34px;height:34px;background:white;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;font-size:15px;color:var(--dark)}
+.logo-name{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:16px;color:white;transition:color 0.3s}
+.logo-tag{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;display:block;transition:color 0.3s}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:14px;font-weight:400;color:rgba(255,255,255,0.7);transition:color 0.3s}
+.nav-links a:hover{color:white}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn-ghost{background:transparent;border:none;color:rgba(255,255,255,0.75);padding:8px 14px;font-size:13px;font-weight:300;transition:color 0.2s}
+.btn-ghost:hover{color:white}
+.btn-book{background:white;color:var(--dark);padding:9px 20px;font-size:13px;font-weight:400;border:none;border-radius:4px;transition:opacity 0.2s}
+.btn-book:hover{opacity:0.85}
+nav.scrolled{top:12px;left:24px;right:24px;padding:0 32px;border-radius:14px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 32px rgba(0,0,0,0.1);border:1px solid rgba(0,0,0,0.06)}
+nav.scrolled .logo-mark{background:var(--dark);color:white}
+nav.scrolled .logo-name{color:var(--dark)}
+nav.scrolled .logo-tag{color:var(--muted)}
+nav.scrolled .nav-links a{color:var(--mid)}
+nav.scrolled .nav-links a:hover{color:var(--dark)}
+nav.scrolled .btn-ghost{color:var(--mid)}
+nav.scrolled .btn-ghost:hover{color:var(--dark)}
+nav.scrolled .btn-book{background:var(--dark);color:white}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;background:url('dental-hero.jpg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,15,30,0.88) 0%,rgba(10,15,30,0.7) 50%,rgba(10,15,30,0.35) 100%)}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 5%;width:100%}
+.hero-inner{max-width:640px;padding-top:80px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:40px;margin-bottom:28px}
+.hero-badge span{width:5px;height:5px;background:white;border-radius:50%}
+.hero h1{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:62px;font-weight:300;line-height:1.05;letter-spacing:-1px;color:white;margin-bottom:22px}
+.hero h1 em{font-style:normal;color:white}
+.hero-sub{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:40px;max-width:480px}
+.hero-btns{display:flex;align-items:center;gap:14px;margin-bottom:56px}
+.btn-primary{background:white;color:var(--dark);padding:13px 26px;font-size:14px;font-weight:400;border:none;border-radius:4px;display:inline-flex;align-items:center;gap:8px;transition:opacity 0.2s}
+.btn-primary:hover{opacity:0.88}
+.btn-primary.dark{background:var(--dark);color:white}
+.btn-primary.dark:hover{background:#333}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:12px 24px;font-size:14px;font-weight:300;border-radius:4px;transition:all 0.2s}
+.btn-outline:hover{border-color:white;color:white}
+.hero-stats{display:flex;gap:40px}
+.hero-stat strong{display:block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:34px;font-weight:300;color:white;line-height:1}
+.hero-stat span{font-size:11px;font-weight:500;color:rgba(255,255,255,0.45);letter-spacing:1px;text-transform:uppercase;margin-top:4px;display:block}
+
+
+/* SECTION COMMON */
+section{padding:88px 5%}
+.section-max{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+.section-title{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:40px;font-weight:300;line-height:1.05;letter-spacing:-0.5px;color:var(--dark);margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--mid);line-height:1.7;max-width:520px}
+
+/* FEATURES */
+.features-section{background:var(--bg)}
+.features-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.features-left .section-title{font-size:44px}
+.features-left p{font-size:16px;color:var(--mid);line-height:1.75;margin-top:16px;margin-bottom:32px}
+.features-left .btn-primary{display:inline-flex}
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.feature-card{background:var(--white);padding:28px 24px}
+.feature-card h4{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:300;color:var(--dark);margin-bottom:6px}
+.feature-card p{font-size:13px;color:var(--mid);line-height:1.65}
+
+/* SERVICES */
+.services-section{background:var(--white)}
+.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.25s,transform 0.25s;cursor:pointer}
+.service-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.1);transform:translateY(-4px)}
+.service-img{height:220px;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.service-body{padding:24px}
+.service-meta{display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.service-cat{font-size:11px;font-weight:500;color:var(--primary);text-transform:uppercase;letter-spacing:1px}
+.service-body h3{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:21px;font-weight:300;color:var(--dark);margin-bottom:8px;line-height:1.15}
+.service-body p{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:16px}
+.service-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--border)}
+.service-info{display:flex;align-items:center;gap:12px}
+.service-tag{font-size:12px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:4px}
+.service-tag svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}
+.service-arrow{display:flex;align-items:center;justify-content:center}
+.service-arrow svg{width:16px;height:16px;stroke:var(--mid);fill:none;stroke-width:2;transition:stroke 0.2s,transform 0.2s}
+.service-card:hover .service-arrow svg{stroke:var(--dark);transform:translateX(3px)}
+
+/* PROCESS */
+.process-section{background:var(--dark)}
+.process-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.process-left .section-label{color:rgba(255,255,255,0.45)}
+.process-left .section-title{color:white}
+.process-left p{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.75;margin-top:16px;margin-bottom:36px;max-width:420px}
+.process-steps{display:flex;flex-direction:column;gap:2px}
+.process-step{display:flex;gap:24px;align-items:flex-start;padding:28px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;transition:background 0.2s}
+.process-step:hover{background:rgba(255,255,255,0.07)}
+.step-num{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:42px;font-weight:300;color:rgba(255,255,255,0.06);line-height:1;flex-shrink:0;min-width:56px;transition:color 0.2s}
+.process-step:hover .step-num{color:rgba(255,255,255,0.3)}
+.step-content h4{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:19px;font-weight:300;color:white;margin-bottom:6px}
+.step-content p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65}
+
+/* TREATMENTS */
+.treatments-section{background:var(--bg)}
+.treatments-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+.treatments-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.treatment-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s,transform 0.2s}
+.treatment-card:hover{box-shadow:0 8px 28px rgba(0,0,0,0.09);transform:translateY(-3px)}
+.treatment-img{height:160px;background-size:cover;background-position:center;position:relative}
+.treatment-price{position:absolute;bottom:12px;right:12px;background:var(--dark);color:white;font-size:13px;font-weight:400;padding:4px 10px;border-radius:4px}
+.treatment-body{padding:18px}
+.treatment-body h4{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:17px;font-weight:300;color:var(--dark);margin-bottom:4px}
+.treatment-body p{font-size:13px;color:var(--mid);line-height:1.55;margin-bottom:12px}
+.treatment-meta{display:flex;align-items:center;justify-content:space-between}
+.treatment-dur{font-size:12px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:4px}
+.treatment-dur svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+.treatment-book{font-size:12px;font-weight:400;color:var(--primary);display:flex;align-items:center;gap:4px}
+.treatment-book svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform 0.2s}
+.treatment-card:hover .treatment-book svg{transform:translateX(3px)}
+
+
+/* BOOKING */
+.booking-section{background:var(--white);border-top:1px solid var(--border)}
+.booking-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.booking-info{padding-top:8px}
+.booking-info .section-sub{margin-top:16px;margin-bottom:40px}
+.contact-card{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.contact-icon{width:44px;height:44px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:20px;height:20px;stroke:var(--primary);fill:none;stroke-width:2}
+.contact-card strong{display:block;font-size:13px;font-weight:400;color:var(--dark);margin-bottom:2px}
+.contact-card span{font-size:14px;color:var(--mid)}
+.booking-form{background:var(--bg);border-radius:12px;padding:36px}
+.form-title{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:300;color:var(--dark);margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:12px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;color:var(--mid)}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:6px;padding:11px 14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:var(--dark);background:var(--white);outline:none;transition:border 0.2s;width:100%}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-submit{width:100%;padding:13px;background:var(--primary);color:white;font-size:15px;font-weight:400;border:none;border-radius:6px;transition:background 0.2s;margin-top:4px}
+.form-submit:hover{background:var(--primary-dark)}
+
+/* FOOTER */
+footer{background:var(--dark);padding:56px 5% 28px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;margin-top:14px;max-width:280px}
+.footer-col h4{font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:white;margin-bottom:18px}
+.footer-col a{display:block;font-size:14px;color:rgba(255,255,255,0.45);margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:white}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:13px;color:rgba(255,255,255,0.25)}
+.footer-logo-name{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:300;font-size:17px;color:white}
+.footer-logo-tag{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">P</div>
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">About</a>
+      <a href="#treatments">Treatments</a>
+      <a href="#booking">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-ghost" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Login</button>
+      <button class="btn-book" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Appointment</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-badge"><span></span>Trusted by 2,000+ Patients</div>
+      <h1>Your Perfect<br/><em>Smile</em> Starts<br/>Right Here.</h1>
+      <p class="hero-sub">From routine check-ups to complete smile makeovers — expert dental care delivered with compassion, precision, and the latest technology.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Book Appointment
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Browse Services</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>2,000+</strong><span>Happy Patients</span></div>
+        <div class="hero-stat"><strong>15+</strong><span>Years Experience</span></div>
+        <div class="hero-stat"><strong>98%</strong><span>Satisfaction Rate</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="about">
+  <div class="section-max">
+    <div class="features-layout">
+      <div class="features-left fade-up">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Exceptional Dental Care Through Modern Technology And Expert Hands.</h2>
+        <p>We believe everyone deserves a healthy, confident smile. Our team of experienced specialists use the latest techniques to make every visit comfortable and effective.</p>
+        <button class="btn-primary dark" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Free Consultation</button>
+      </div>
+      <div class="features-grid fade-up" style="transition-delay:0.1s">
+        <div class="feature-card">
+          <h4>Expert Specialists</h4>
+          <p>Our team of 10 qualified dentists with decades of combined experience in every specialty.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Advanced Equipment</h4>
+          <p>Digital X-rays, 3D scanning, laser dentistry and more — the latest tech for precise treatment.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Painless Procedures</h4>
+          <p>Modern anaesthesia and gentle techniques ensure every procedure is as comfortable as possible.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Easy Scheduling</h4>
+          <p>Book online anytime — same-day appointments and flexible evening slots available.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Affordable Plans</h4>
+          <p>Transparent pricing with flexible EMI options, insurance support, and care packages for families.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Emergency Care</h4>
+          <p>Walk-in emergency slots available Monday to Saturday. Same-day relief guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES CARDS -->
+<section class="services-section" id="services">
+  <div class="section-max">
+    <div class="services-header fade-up">
+      <div>
+        <div class="section-label">Our Services</div>
+        <h2 class="section-title">Ready To Transform<br/>Your Smile?</h2>
+      </div>
+      <button class="btn-primary dark" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now →</button>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-img" style="background:url('pexels-tkirkgoz-11765538.jpg') center/cover no-repeat">
+        </div>
+        <div class="service-body">
+          <div class="service-meta"><span class="service-cat">Preventive</span></div>
+          <h3>Teeth Cleaning &amp; Check-Up</h3>
+          <p>Professional scaling and polishing with a full oral health examination by our specialists.</p>
+          <div class="service-footer">
+            <div class="service-info">
+              <span class="service-tag"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>45 min</span>
+              <span class="service-tag"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>4.9 ★</span>
+            </div>
+            <div class="service-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.1s">
+        <div class="service-img" style="background:url('pexels-alex-197677521-11951233.jpg') center/cover no-repeat">
+        </div>
+        <div class="service-body">
+          <div class="service-meta"><span class="service-cat">Cosmetic</span></div>
+          <h3>Teeth Whitening &amp; Brightening</h3>
+          <p>Advanced laser whitening treatments that deliver up to 8 shades brighter in a single session.</p>
+          <div class="service-footer">
+            <div class="service-info">
+              <span class="service-tag"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>90 min</span>
+              <span class="service-tag"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>4.8 ★</span>
+            </div>
+            <div class="service-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.2s">
+        <div class="service-img" style="background:url('pexels-mandiri-abadi-396768996-14804699.jpg') center/cover no-repeat">
+        </div>
+        <div class="service-body">
+          <div class="service-meta"><span class="service-cat">Restorative</span></div>
+          <h3>Dental Implants</h3>
+          <p>Permanent tooth replacement using titanium implants — natural look, feel, and function for life.</p>
+          <div class="service-footer">
+            <div class="service-info">
+              <span class="service-tag"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2–3 hrs</span>
+              <span class="service-tag"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>5.0 ★</span>
+            </div>
+            <div class="service-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="section-max">
+    <div class="process-layout">
+      <div class="process-left fade-up">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">A Treatment Journey That Puts You First.</h2>
+        <p>From your first visit to your final check-up — we walk with you every step of the way to ensure you feel informed, comfortable, and confident.</p>
+        <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Get Started Today</button>
+      </div>
+      <div class="process-steps fade-up" style="transition-delay:0.12s">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Consultation</h4>
+            <p>Meet our specialist for a full oral examination, X-rays if needed, and a clear diagnosis. We explain everything before we begin.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Treatment Plan</h4>
+            <p>We design a personalised treatment plan with a transparent cost breakdown and timeline — no hidden charges, ever.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Aftercare &amp; Follow-Up</h4>
+            <p>Post-treatment guidance, follow-up appointments and a dedicated care coordinator to support your recovery and maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="treatments-section" id="treatments">
+  <div class="section-max">
+    <div class="treatments-header fade-up">
+      <div>
+        <div class="section-label">All Treatments</div>
+        <h2 class="section-title">Treatments To Transform<br/>Your Oral Health</h2>
+      </div>
+      <button class="btn-primary dark" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">View All →</button>
+    </div>
+    <div class="treatments-grid">
+      <div class="treatment-card fade-up">
+        <div class="treatment-img" style="background:url('pexels-mandiri-abadi-396768996-14805033.jpg') center/cover no-repeat">
+          <span class="treatment-price">From ₹800</span>
+        </div>
+        <div class="treatment-body">
+          <h4>Root Canal Treatment</h4>
+          <p>Save your tooth and eliminate pain with our gentle RCT procedure.</p>
+          <div class="treatment-meta">
+            <span class="treatment-dur"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>60–90 min</span>
+            <span class="treatment-book">Book <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="treatment-card fade-up" style="transition-delay:0.08s">
+        <div class="treatment-img" style="background:url('pexels-delot-18471453.jpg') center/cover no-repeat">
+          <span class="treatment-price">From ₹1,200</span>
+        </div>
+        <div class="treatment-body">
+          <h4>Dental Braces &amp; Aligners</h4>
+          <p>Traditional braces and clear aligners to straighten teeth at any age.</p>
+          <div class="treatment-meta">
+            <span class="treatment-dur"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>12–18 months</span>
+            <span class="treatment-book">Book <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="treatment-card fade-up" style="transition-delay:0.16s">
+        <div class="treatment-img" style="background:url('pexels-j-e-22471780-18569750.jpg') center/cover no-repeat">
+          <span class="treatment-price">From ₹600</span>
+        </div>
+        <div class="treatment-body">
+          <h4>Dental Crowns &amp; Bridges</h4>
+          <p>Restore damaged or missing teeth with natural-looking crowns and bridges.</p>
+          <div class="treatment-meta">
+            <span class="treatment-dur"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2 visits</span>
+            <span class="treatment-book">Book <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="treatment-card fade-up" style="transition-delay:0.24s">
+        <div class="treatment-img" style="background:url('pexels-tkirkgoz-11765538.jpg') center/cover no-repeat">
+          <span class="treatment-price">From ₹400</span>
+        </div>
+        <div class="treatment-body">
+          <h4>Tooth Extractions</h4>
+          <p>Simple and surgical extractions performed with minimal discomfort.</p>
+          <div class="treatment-meta">
+            <span class="treatment-dur"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>20–45 min</span>
+            <span class="treatment-book">Book <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING / CONTACT -->
+<section class="booking-section" id="booking">
+  <div class="section-max">
+    <div class="booking-layout">
+      <div class="booking-info fade-up">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Book Your Appointment Today.</h2>
+        <p class="section-sub">Fill in the form and our team will confirm your appointment within 2 hours. Same-day slots available.</p>
+        <div style="margin-top:40px;display:flex;flex-direction:column;gap:0">
+          <div class="contact-card">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.08 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div><strong>Phone</strong><span>+91 98765 43210 &nbsp;|&nbsp; +91 98765 43211</span></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><strong>Email</strong><span>hello@pearldental.in</span></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><strong>Address</strong><span>123 MG Road, Nashik, Maharashtra 422001</span></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+            <div><strong>Hours</strong><span>Mon–Sat: 9 AM – 7 PM &nbsp;|&nbsp; Sun: 10 AM – 2 PM</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form fade-up" style="transition-delay:0.12s">
+        <div class="form-title">Book an Appointment</div>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name"/></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+          <div class="form-group"><label>Preferred Date</label><input type="date"/></div>
+        </div>
+        <div class="form-group"><label>Service Required</label>
+          <select>
+            <option>Select a service</option>
+            <option>Teeth Cleaning & Check-Up</option>
+            <option>Teeth Whitening</option>
+            <option>Dental Implants</option>
+            <option>Root Canal Treatment</option>
+            <option>Braces & Aligners</option>
+            <option>Crowns & Bridges</option>
+            <option>Tooth Extraction</option>
+            <option>Emergency / Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message (Optional)</label><textarea placeholder="Tell us about your concern or question..."></textarea></div>
+        <button class="form-submit">Confirm Appointment →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div class="logo-mark">P</div>
+        </div>
+        <p class="footer-brand" style="font-size:14px;color:rgba(255,255,255,0.38);line-height:1.75;margin-top:14px;max-width:280px">Your trusted dental partner in Nashik. Compassionate care, modern technology, and a smile you'll love.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a>Teeth Cleaning</a>
+        <a>Teeth Whitening</a>
+        <a>Dental Implants</a>
+        <a>Root Canal</a>
+        <a>Braces & Aligners</a>
+        <a>Crowns & Bridges</a>
+      </div>
+      <div class="footer-col">
+        <h4>Clinic</h4>
+        <a>About Us</a>
+        <a>Our Doctors</a>
+        <a>Testimonials</a>
+        <a>Gallery</a>
+        <a>Care Plans</a>
+        <a>FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a>+91 98765 43210</a>
+        <a>hello@pearldental.in</a>
+        <a>123 MG Road, Nashik</a>
+        <a>Book Appointment</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Pearl Dental Studio. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll behaviour
+var nav = document.getElementById('main-nav');
+function updateNav(){
+  if(window.scrollY > window.innerHeight * 0.6){
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
+
+// Scroll animations
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(function(el){ observer.observe(el); });
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
